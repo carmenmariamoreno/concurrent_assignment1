@@ -11,6 +11,9 @@ package concurrent_assignment1.B;
 public class T_PrintID extends Thread{
 
     int ID;
+    public T_PrintID(){
+        ID=11;
+    }
     
     public T_PrintID(int a){
         ID=a;
@@ -23,7 +26,7 @@ public class T_PrintID extends Thread{
     }
     public static void main (String argsString[]){
         
-        (new T_PrintID(11)).start();
+        (new T_PrintID()).start();
         
     }
 

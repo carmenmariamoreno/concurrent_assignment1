@@ -14,13 +14,14 @@ public class Numbers extends Thread{
     
         @Override
     public void run(){
-       id=5; 
+       for (int i = 0; i<5; i++){
+       (new Thread (new T_PrintID (i))).start();
+       }
     }
      
     public static void main (String args[]){
        
        (new Numbers()).start();
-       (new T_PrintID (id)).start();
     }
 
 }

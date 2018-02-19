@@ -8,6 +8,19 @@ package concurrent_assignment1.B;
  *
  */
 
-public class Numbers {
+public class Numbers extends Thread{
+
+    int id;
+    
+        @Override
+    public void run(){
+       id=5; 
+    }
+     
+    public static void main (String args[]){
+       
+       (new Numbers()).start();
+       (new T_PrintID (id)).start();
+    }
 
 }

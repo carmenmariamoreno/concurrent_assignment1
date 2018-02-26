@@ -14,7 +14,7 @@ public class Numbers extends Thread{
     
         @Override
     public void run(){
-       for (int i = 0; i<5; i++){
+       for (int i = 1; i<6; i++){
        (new Thread (new T_PrintID (i))).start();
        }
     }

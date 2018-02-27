@@ -1,5 +1,5 @@
 package concurrent_assignment1.D;
-
+import java.util.Random;
 /** Lazy must:
  * - Extend Thread
  * - Enter in a loop which iterates a random number of times between 2 to 8.
@@ -12,6 +12,37 @@ package concurrent_assignment1.D;
  *
  */
 
-public class Lazy {
 
+
+public class Lazy extends Thread{
+    
+    /*int random = (int)((Math.random()*6) + 2);
+    int randommessages = (int)((Math.random()*3));*/
+    Random nrandom = new Random(System.currentTimeMillis());
+    
+    
+    String[] messages = {"I am dressing up...", "Just a sec, please...","These clothes do not suit me..."};
+    
+    
+    @Override
+    public void run(){
+        int random = (nrandom.nextInt(6))+2;
+        for (int i = 0; i < random && !Thread.currentThread().isInterrupted(); i++) {
+            System.out.println(messages[nrandom.nextInt(3)]);
+            
+        }
+        
+        if(!Thread.currentThread().isInterrupted()){
+            System.out.println("I am ready, the early bird catches the worm!");
+        } else{
+            System.out.println("That's not cricket, please play the game!");
+        }
+        
+    }
+    /*public static void main (String argsString[]){
+        
+        (new Thread(new Lazy())).start();
+       
+        
+    }*/
 }

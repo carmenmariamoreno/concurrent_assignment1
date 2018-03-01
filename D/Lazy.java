@@ -1,5 +1,7 @@
 package concurrent_assignment1.D;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /** Lazy must:
  * - Extend Thread
  * - Enter in a loop which iterates a random number of times between 2 to 8.
@@ -18,25 +20,39 @@ public class Lazy extends Thread{
     
     /*int random = (int)((Math.random()*6) + 2);
     int randommessages = (int)((Math.random()*3));*/
-    Random nrandom = new Random(System.currentTimeMillis());
-    
+    //Random nrandom = new Random(System.currentTimeMillis());
+    //boolean exit=false;
     
     String[] messages = {"I am dressing up...", "Just a sec, please...","These clothes do not suit me..."};
     
     
     @Override
     public void run(){
+        Random nrandom=new Random();
         int random = (nrandom.nextInt(6))+2;
-        for (int i = 0; i < random && !Thread.currentThread().isInterrupted(); i++) {
+        
+        for (int i = 0; (i < random) && !Thread.currentThread().isInterrupted(); i++) {
             System.out.println(messages[nrandom.nextInt(3)]);
+          //while (!exit){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+               this.interrupt();                    
+            }        
             
         }
         
+         if (Thread.currentThread().isInterrupted()){
+        System.out.println("That's not cricket, please play the game!");
+        }
+         
         if(!Thread.currentThread().isInterrupted()){
             System.out.println("I am ready, the early bird catches the worm!");
-        } else{
-            System.out.println("That's not cricket, please play the game!");
+        } 
+        
         }
+        
+        
         
     }
     /*public static void main (String argsString[]){
@@ -45,4 +61,3 @@ public class Lazy extends Thread{
        
         
     }*/
-}

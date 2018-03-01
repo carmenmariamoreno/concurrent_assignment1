@@ -18,22 +18,31 @@ public class Hurry extends Thread{
         
         Lazy t1 =new Lazy();
         t1.start();
+        int i=0;
         
-        for (int i =0; i<5 && t1.isAlive(); i++){
+        for (i =0; i<5 && t1.isAlive(); i++){
             System.out.println("Aren't you ready yet?");
             
             Thread.sleep(1000); //It "stops" for 1 second, so for loop will be made each second
         }
-        
-        if (t1.isAlive()){
+
+        if (i==5 && t1.isAlive()){
             System.out.println("You are resting in your laurels... and I am leaving!");
             t1.interrupt();
-        }else{
+            try{
+                t1.join();
+            }catch(InterruptedException ex){
+                ex.printStackTrace();
+            }
+        }
+
+        else{
             System.out.println("At last, a turtle runs rings round you!");
         }
+
+        t1.join();
         
-        t1.join(); //to finish first Lazy thread
-        
+        System.out.println("Finished");
         
     }
 }

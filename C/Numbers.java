@@ -8,18 +8,15 @@ package concurrent_assignment1.C;
  *
  */
 
-public class Numbers extends Thread{
-    int id;
+public class Numbers {
+  
     
-        @Override
-    public void run(){
-       for (int i = 1; i<6; i++){
-       (new Thread (new R_PrintID (i))).start();
-       }
-    }
+      
      
     public static void main (String args[]){
        
-       (new Numbers()).start();
+      for (int i = 1; i<6; i++){
+       (new Thread (new R_PrintID (i))).start();
+       }
     }
 }
